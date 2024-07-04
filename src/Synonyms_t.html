@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<base target="_top" />
+		<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css" />
+		<style>
+			input {
+				width: 100%;
+			}
+			td {
+				padding: 5px;
+				border-bottom: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<? var data = getFunction(expression); var message = data.message; var words = data.words; var nbCol = 5; ?>
+			<p><?= message ?></p>
+			<p>
+				<input type="button" value="Close" onclick="google.script.host.close()" />
+			</p>
+
+			<table>
+				<colgroup>
+					<col width="160" span="<?= nbCol ?>" />
+				</colgroup>
+				<? for (var i = 0; i < words.length;) { ?>
+				<tr>
+					<? for (var col = 0; col < nbCol && i < words.length; col++, i++) { ?>
+					<td><input type="submit" value="<?= words[i] ?>" class="action" onclick="form_data('<?= words[i] ?>')" /></td>
+					<? } ?>
+				</tr>
+				<? } ?>
+			</table>
+		</div>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script>
+			function form_data(word) {
+				var value = word
+				google.script.run.withSuccessHandler(closeIt).replaceSelection(value)
+			}
+			function closeIt() {
+				google.script.host.close()
+			}
+		</script>
+	</body>
+</html>
