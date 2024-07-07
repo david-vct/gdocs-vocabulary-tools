@@ -1,7 +1,9 @@
 /* ----- GLOBALS ----- */
+
 var ui = DocumentApp.getUi()
 
 /* ----- MENU ----- */
+
 function onOpen() {
 	ui.createMenu("Vocabulaire")
 		.addItem("Synonymes", "showSynonymsInterface")
@@ -14,19 +16,17 @@ function onOpen() {
 
 // Synonyms Interface
 function showSynonymsInterface() {
-	let title = "Synonymes de " + firstUpperCase(expression)
-	showVocabularyInterface(title, "views/vocabulary", getSynonyms)
+	showVocabularyInterface("Synonymes", "views/vocabulary", getSynonyms)
 }
 
 // Antonyms Interface
 function showAntonymsInterface() {
-	let title = "Antonymes de " + firstUpperCase(expression)
-	showVocabularyInterface(title, "views/vocabulary", getAntonyms)
+	showVocabularyInterface("Antonymes", "views/vocabulary", getAntonyms)
 }
 
 // Conjugation Interface
 function showConjugationInterface() {
-	var expression = getSelection()
+	var expression = getSelectedExpression()
 
 	//Call the HTML file and set the width and height
 	var template = HtmlService.createTemplateFromFile("Conjugation_t")

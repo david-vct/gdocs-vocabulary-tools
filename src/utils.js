@@ -7,14 +7,14 @@
 function showVocabularyInterface(title, viewName, scrapingFunction) {
 	// Create the vocabulary template
 	let template = HtmlService.createTemplateFromFile(viewName)
-	template.expression = getSelection()
+	template.expression = getSelectedExpression()
 	template.getFunction = scrapingFunction
 
 	// Render the template to html
 	let html = template.evaluate().setWidth(800).setHeight(500)
 
 	// Display the dialog
-	ui.showModalDialog(html, title)
+	ui.showModalDialog(html, title + " : " + template.expression)
 }
 
 /**
@@ -36,7 +36,7 @@ function getHtml(url) {
  * Get the actual selected text
  * @returns {string}
  */
-function getSelection() {
+function getSelectedExpression() {
 	let doc = DocumentApp.getActiveDocument()
 	let selection = doc.getSelection()
 	if (selection) {
@@ -58,7 +58,6 @@ function getSelection() {
 		selectedText = selectedText.substring(startOffset, endOffset + 1)
 	}
 
-	console.log("DEB : " + selectedText)
 	return selectedText.trim()
 }
 
