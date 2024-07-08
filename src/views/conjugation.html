@@ -77,9 +77,9 @@
 			}
 
 			function form_data(word) {
-				var value = word
-				google.script.run.withSuccessHandler(closeIt).replaceSelection(value)
+				google.script.run.withSuccessHandler(closeIt).insertText(word)
 			}
+
 			function closeIt() {
 				google.script.host.close()
 			}

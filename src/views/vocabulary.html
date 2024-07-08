@@ -15,7 +15,7 @@
 	</head>
 	<body>
 		<div>
-			<? var data = getFunction(expression); var message = data.message; var words = data.words; var nbCol = 5; ?>
+			<? var message = data.message; var words = data.words; var nbCol = 5; ?>
 			<p><?= message ?></p>
 			<p>
 				<input type="button" value="Close" onclick="google.script.host.close()" />
@@ -37,8 +37,7 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script>
 			function form_data(word) {
-				var value = word
-				google.script.run.withSuccessHandler(closeIt).replaceSelection(value)
+				google.script.run.withSuccessHandler(closeIt).insertText(word)
 			}
 			function closeIt() {
 				google.script.host.close()
