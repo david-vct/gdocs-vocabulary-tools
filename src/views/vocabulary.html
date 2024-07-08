@@ -37,8 +37,7 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script>
 			function form_data(word) {
-				var value = word
-				google.script.run.withSuccessHandler(closeIt).replaceSelection(value)
+				google.script.run.withSuccessHandler(closeIt).insertText(word)
 			}
 			function closeIt() {
 				google.script.host.close()
