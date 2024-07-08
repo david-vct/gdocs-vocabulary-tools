@@ -24,15 +24,16 @@ function searchConjugation(expression, html) {
 
 	let modes = []
 
-	console.log("THERE")
-	console.log(container)
-
 	for (let i = 0; i < container.length; i++) {
 		let mode = new Object()
 		mode.nom = container[i].toString().match(/(?<=<span>)[\s\S]*?(?= <)/)
 		mode.temps = []
 
-		let temps = container[i].toString().match(/<div class="tempstab">[\s\S]*?<\/div><\/div>/g)
+		let temps = container[i].toString().match(/<div class="tempstab">[\s\S]*?(?:<\/div><\/div>|<\/a><\/div)/g)
+		if (!temps) {
+			return { message: `Une erreur est survenue avec l'expression : ${container[i]}`, modes: [] }
+		}
+
 		for (let j = 0; j < temps.length; j++) {
 			let nomTemps = temps[j].toString().match(/(?<=<h3 class="tempsheader">)[\s\S]*?(?=<)/)
 			let personne = temps[j].toString().match(/(?<=<div class="tempscorps">)[\s\S]*?(?=<\/div>)/g) // Get the temps container

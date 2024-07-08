@@ -26,6 +26,5 @@ function showAntonymsInterface() {
 
 // Conjugation Interface
 function showConjugationInterface() {
-	console.log("HEY")
 	showVocabularyInterface("Conjugaison", "views/conjugation", getConjugation)
 }
