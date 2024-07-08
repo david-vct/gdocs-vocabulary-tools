@@ -1,20 +1,21 @@
 /**
  * Show the choosen vocabulary interface
  * @param {string} title
+ * @param {string} expression
+ * @param {object} data
  * @param {string} viewName
- * @param {function} scrapingFunction
  */
-function showVocabularyInterface(title, viewName, scrapingFunction) {
+function showVocabularyInterface(title, expression, data, viewName) {
 	// Create the vocabulary template
 	let template = HtmlService.createTemplateFromFile(viewName)
-	template.expression = getSelectedExpression()
-	template.getFunction = scrapingFunction
+	template.expression = expression
+	template.data = data
 
 	// Render the template to html
 	let html = template.evaluate().setWidth(800).setHeight(500)
 
 	// Display the dialog
-	ui.showModalDialog(html, title + " : " + template.expression)
+	ui.showModalDialog(html, title + " : " + expression)
 }
 
 /**
@@ -59,6 +60,43 @@ function getSelectedExpression() {
 	}
 
 	return selectedText.trim()
+}
+
+/**
+ * Gets the text the user has selected. If there is no selection,
+ * this function displays an error message
+ *
+ * @return {string} The selected text
+ */
+function getSelectedText() {
+	const selection = DocumentApp.getActiveDocument().getSelection()
+	const text = []
+	if (selection) {
+		const elements = selection.getRangeElements()
+		for (let i = 0; i < elements.length; ++i) {
+			if (elements[i].isPartial()) {
+				const element = elements[i].getElement().asText()
+				const startIndex = elements[i].getStartOffset()
+				const endIndex = elements[i].getEndOffsetInclusive()
+
+				text.push(element.getText().substring(startIndex, endIndex + 1))
+			} else {
+				const element = elements[i].getElement()
+				// Only translate elements that can be edited as text; skip images and
+				// other non-text elements.
+				if (element.editAsText) {
+					const elementText = element.asText().getText()
+					// This check is necessary to exclude images, which return a blank
+					// text element.
+					if (elementText) {
+						text.push(elementText)
+					}
+				}
+			}
+		}
+	}
+	if (!text.length) throw new Error("Please select some text.")
+	return text.join()
 }
 
 /**

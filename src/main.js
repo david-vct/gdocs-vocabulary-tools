@@ -16,15 +16,21 @@ function onOpen() {
 
 // Synonyms Interface
 function showSynonymsInterface() {
-	showVocabularyInterface("Synonymes", "views/vocabulary", getSynonyms)
+	let expression = getSelectedText()
+	let data = getSynonyms(expression)
+	showVocabularyInterface("Synonymes", expression, data, "views/vocabulary")
 }
 
 // Antonyms Interface
 function showAntonymsInterface() {
-	showVocabularyInterface("Antonymes", "views/vocabulary", getAntonyms)
+	let expression = getSelectedText()
+	let data = getAntonyms(expression)
+	showVocabularyInterface("Antonymes", expression, data, "views/vocabulary")
 }
 
 // Conjugation Interface
 function showConjugationInterface() {
-	showVocabularyInterface("Conjugaison", "views/conjugation", getConjugation)
+	let expression = getSelectedText()
+	let data = getConjugation(expression)
+	showVocabularyInterface("Conjugaison", expression, data, "views/conjugation")
 }
