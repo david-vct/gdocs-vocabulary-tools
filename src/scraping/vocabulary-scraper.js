@@ -39,6 +39,7 @@ function searchVocabulary(expression, html) {
 
 	// If is an error page
 	if (!container) {
+		throw new Error("Error:" + html)
 		return {
 			message: `Une erreur est survenue avec l'expression : ${expression}`,
 			words: ["ಠ_ಠ"],
