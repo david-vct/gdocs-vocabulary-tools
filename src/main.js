@@ -26,13 +26,5 @@ function showAntonymsInterface() {
 
 // Conjugation Interface
 function showConjugationInterface() {
-	var expression = getSelectedExpression()
-
-	//Call the HTML file and set the width and height
-	var template = HtmlService.createTemplateFromFile("Conjugation_t")
-	template.expression = expression
-	var html = template.evaluate().setWidth(800).setHeight(500)
-
-	//Display the dialog
-	var dialog = ui.showModalDialog(html, "Conjugaison de " + firstUpperCase(expression))
+	showVocabularyInterface("Conjugaison", "views/conjugation", getConjugation)
 }
