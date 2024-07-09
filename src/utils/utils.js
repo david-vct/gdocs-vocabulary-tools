@@ -1,21 +1,39 @@
 /**
- * Show the choosen vocabulary interface
+ * Show a sidebar interface
  * @param {string} title
- * @param {string} expression
  * @param {object} data
  * @param {string} viewName
  */
-function showVocabularyInterface(title, expression, data, viewName) {
-	// Create the vocabulary template
+function showSidebar(title, data, viewName) {
+	// Create the template
 	let template = HtmlService.createTemplateFromFile(viewName)
-	template.expression = expression
 	template.data = data
+	template.parameters = { nbCol: 1 }
 
 	// Render the template to html
-	let html = template.evaluate().setWidth(800).setHeight(500)
+	let html = template.evaluate().setTitle(title)
+
+	// Display the sidebar
+	ui.showSidebar(html)
+}
+
+/**
+ * Show a dialog interface
+ * @param {string} title
+ * @param {object} data
+ * @param {string} viewName
+ */
+function showDialog(title, data, viewName) {
+	// Create the template
+	let template = HtmlService.createTemplateFromFile(viewName)
+	template.data = data
+	template.parameters = { nbCol: 4 }
+
+	// Render the template to html
+	let html = template.evaluate().setWidth(800).setHeight(600)
 
 	// Display the dialog
-	ui.showModalDialog(html, title + " : " + expression)
+	ui.showModalDialog(html, title)
 }
 
 /**
