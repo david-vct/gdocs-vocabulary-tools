@@ -4,7 +4,7 @@
  * @returns
  */
 function getSynonyms(expression) {
-	return getVocabulary("http://synonymo.fr/synonyme/", expression)
+	return getVocabulary("https://synonymo.fr/synonyme/", expression)
 }
 
 /**
@@ -13,7 +13,7 @@ function getSynonyms(expression) {
  * @returns
  */
 function getAntonyms(expression) {
-	return getVocabulary("http://antonyme.org/antonyme/", expression)
+	return getVocabulary("https://antonyme.org/antonyme/", expression)
 }
 
 /**
@@ -35,15 +35,11 @@ function getVocabulary(url, expression) {
  */
 function searchVocabulary(expression, html) {
 	// Get the main container of the vocabulary
-	let container = html.toString().match(/<div class="fiche">[\s\S]*?<\/div>/)
+	let container = html.toString().match(/<div class="fiche"[\s\S]*?<\/div>/)
 
 	// If is an error page
 	if (!container) {
-		throw new Error("Error:" + html)
-		return {
-			message: `Une erreur est survenue avec l'expression : ${expression}`,
-			words: ["ಠ_ಠ"],
-		}
+		throw new Error("Vocabulary search failed\n" + html)
 	}
 
 	// Get the list of synonyms or antonyms

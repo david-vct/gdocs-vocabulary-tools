@@ -4,39 +4,46 @@
 		<base target="_top" />
 		<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css" />
 		<style>
-			input {
-				width: 100%;
+			body {
+				margin: 5px;
+				margin-right: 15px;
 			}
 			td {
 				padding: 5px;
 				border-bottom: 0px;
 			}
+			.vocabulary {
+				width: 100%;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 10px;
+			}
+			.vocabulary * {
+				flex: auto;
+			}
+			.bottom-empty-space {
+				width: 100%;
+				height: 500px;
+			}
 		</style>
 	</head>
 	<body>
-		<div>
-			<? var message = data.message; var words = data.words; var nbCol = 5; ?>
-			<p><?= message ?></p>
-			<p>
-				<input type="button" value="Close" onclick="google.script.host.close()" />
-			</p>
+		<? var words = data.words; ?>
+		<p><?= data.message ?></p>
 
-			<table>
-				<colgroup>
-					<col width="160" span="<?= nbCol ?>" />
-				</colgroup>
-				<? for (var i = 0; i < words.length;) { ?>
-				<tr>
-					<? for (var col = 0; col < nbCol && i < words.length; col++, i++) { ?>
-					<td><input type="submit" value="<?= words[i] ?>" class="action" onclick="form_data('<?= words[i] ?>')" /></td>
-					<? } ?>
-				</tr>
+		<main>
+			<div class="vocabulary">
+				<? for (var i = 0; i < words.length; i++) { ?>
+				<input type="submit" value="<?= words[i] ?>" onclick="replaceSelection('<?= words[i] ?>')" />
 				<? } ?>
-			</table>
-		</div>
+			</div>
+		</main>
+		<footer>
+			<div class="bottom-empty-space"></div>
+		</footer>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script>
-			function form_data(word) {
+			function replaceSelection(word) {
 				google.script.run.withSuccessHandler(closeIt).insertText(word)
 			}
 			function closeIt() {
