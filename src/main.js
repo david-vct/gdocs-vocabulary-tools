@@ -17,7 +17,7 @@ function onOpen() {
 // Synonyms Interface
 function showSynonymsInterface() {
 	let expression = getSelectedText()
-	let data = getSynonyms(expression)
+	let data = getSynonymsFromCnrtl(expression) //getSynonyms(expression)
 	showSidebar(`Synonymes ${expression}`, data, "views/vocabulary")
 }
 

@@ -24,16 +24,15 @@ function getAntonyms(expression) {
  */
 function getVocabulary(url, expression) {
 	let html = getHtml(url + expression.toLowerCase())
-	return searchVocabulary(expression, html)
+	return searchVocabulary(html)
 }
 
 /**
- * Get the list of synonyms or antonyms of @expression in @html
- * @param {string} expression
+ * Get the list of synonyms or antonyms in @html
  * @param {string} html
  * @returns {object} {message, words: list of vocabulary}
  */
-function searchVocabulary(expression, html) {
+function searchVocabulary(html) {
 	// Get the main container of the vocabulary
 	let container = html.toString().match(/<div class="fiche"[\s\S]*?<\/div>/)
 
