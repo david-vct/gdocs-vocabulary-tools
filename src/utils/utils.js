@@ -39,7 +39,7 @@ function showDialog(title, data, viewName) {
 /**
  * Get the html from a url
  * @param {string} url
- * @returns
+ * @returns {GoogleAppsScript.URL_Fetch.HTTPResponse}
  */
 function getHtml(url) {
 	let options = {
