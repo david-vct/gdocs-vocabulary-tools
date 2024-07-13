@@ -35,11 +35,16 @@ function parseVocabularyFromCnrtl(html) {
 	}
 
 	// Get the list of synonyms or antonyms
-	let words = html.match(/(?<=<td class="syno_format">)(?:<a href="[\S]*?">)[\s\S]*?(?=<\/a><\/td>)/gm)
+	let regexVocabulary = /(?:<td class="syno_format">|<td class="anto_format">)<a href="[\S]*?">([\s\S]*?)<\/a><\/td>/gm
+	let matchs = html.matchAll(regexVocabulary)
+	matchs = [...matchs]
 
-	if (!words || words.length === 0) {
+	if (!matchs || matchs.length === 0) {
 		throw new Error("No synonyms or antonyms found " + elements)
 	}
+
+	// Reduce matchs to the inner text of the html elements
+	let words = matchs.map((match) => match[1])
 
 	return {
 		message: "Lets go",
