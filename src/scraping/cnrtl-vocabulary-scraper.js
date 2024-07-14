@@ -29,6 +29,8 @@ function getVocabularyFromCnrtl(url, expression) {
 
 function parseVocabularyFromCnrtl(html) {
 	html = html.getContentText()
+
+	// Check if it's an error page
 	let isErrorPage = html.includes("<h2>Erreur</h2>")
 	if (isErrorPage) {
 		throw new Error("Vocabulary search failed\n" + html)
@@ -36,18 +38,15 @@ function parseVocabularyFromCnrtl(html) {
 
 	// Get the list of synonyms or antonyms
 	let regexVocabulary = /(?:<td class="syno_format">|<td class="anto_format">)<a href="[\S]*?">([\s\S]*?)<\/a><\/td>/gm
-	let matchs = html.matchAll(regexVocabulary)
-	matchs = [...matchs]
+	let words = matchGroupe(regexVocabulary, html, 1)
 
-	if (!matchs || matchs.length === 0) {
-		throw new Error("No synonyms or antonyms found " + elements)
-	}
-
-	// Reduce matchs to the inner text of the html elements
-	let words = matchs.map((match) => match[1])
+	// Get the list of accuracy
+	let regexAccuracy = /<img src="\/images\/portail\/pbon\.png" height="16" width="(\d+)" alt=""\/>/gm
+	let accuracies = matchGroupe(regexAccuracy, html, 1).map((accuracy) => Math.min(accuracy, 25) / 25)
 
 	return {
-		message: "Lets go",
+		message: "",
 		words: words,
+		accuracies: accuracies,
 	}
 }
