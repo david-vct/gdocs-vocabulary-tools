@@ -17,20 +17,20 @@ function onOpen() {
 // Synonyms Interface
 function showSynonymsInterface() {
 	let expression = getSelectedText()
-	let data = getSynonymsFromCnrtl(expression) //getSynonyms(expression)
-	showSidebar(`Synonymes ${expression}`, data, "views/vocabulary")
+	let data = getSynonymsFromCnrtl(expression)
+	showSidebar(`Synonymes de ${expression}`, data, "views/vocabulary")
 }
 
 // Antonyms Interface
 function showAntonymsInterface() {
 	let expression = getSelectedText()
-	let data = getAntonyms(expression)
-	showSidebar(`Antonymes ${expression}`, data, "views/vocabulary")
+	let data = getAntonymsFromCnrtl(expression)
+	showSidebar(`Antonymes de ${expression}`, data, "views/vocabulary")
 }
 
 // Conjugation Interface
 function showConjugationInterface() {
 	let expression = getSelectedText()
 	let data = getConjugation(expression)
-	showDialog(`Conjugaison ${expression}`, data, "views/conjugation")
+	showDialog(`Conjugaison de ${expression}`, data, "views/conjugation")
 }
