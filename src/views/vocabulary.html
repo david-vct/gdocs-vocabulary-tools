@@ -39,7 +39,9 @@
 					class="action"
 					value="<?= words[i] ?>"
 					onclick="replaceSelection('<?= words[i] ?>')"
-					style="filter: sepia(<?= 0.7 - data.accuracies[i] * 0.7 ?>) brightness(<?= 1 + data.accuracies[i] * 0.2 ?>)"
+					style="
+						filter: saturate(<?= 0.3 + data.accuracies[i] * 0.7 ?>) brightness(<?= 1 + data.accuracies[i] * 0.2 ?>);
+					"
 				/>
 				<? } ?>
 			</div>
