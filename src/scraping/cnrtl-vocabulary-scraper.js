@@ -33,7 +33,7 @@ function parseVocabularyFromCnrtl(html) {
 	// Check if it's an error page
 	let isErrorPage = html.includes("<h2>Erreur</h2>")
 	if (isErrorPage) {
-		throw new Error("Vocabulary search failed\n" + html)
+		throw new Error("Word not found\n")
 	}
 
 	// Get the list of synonyms or antonyms

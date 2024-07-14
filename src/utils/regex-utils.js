@@ -8,7 +8,7 @@ function matchGroupe(regex, text, groupeIndex) {
 	let matchs = [...text.matchAll(regex)]
 
 	if (!matchs || matchs.length === 0) {
-		throw new Error("No matchs found " + matchs + text)
+		throw new Error("No matchs found ")
 	}
 
 	// Reduce matchs to the groupe index desired
