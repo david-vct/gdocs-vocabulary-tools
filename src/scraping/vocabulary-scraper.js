@@ -2,6 +2,7 @@
  * Get the list of synonyms of @expression
  * @param {string} expression
  * @returns
+ * @deprecated
  */
 function getSynonyms(expression) {
 	return getVocabulary("https://synonymo.fr/synonyme/", expression)
@@ -11,6 +12,7 @@ function getSynonyms(expression) {
  * Get the list of antonyms of @expression
  * @param {string} expression
  * @returns
+ * @deprecated
  */
 function getAntonyms(expression) {
 	return getVocabulary("https://antonyme.org/antonyme/", expression)
