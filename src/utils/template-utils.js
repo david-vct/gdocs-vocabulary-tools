@@ -1,19 +1,13 @@
-function getStyleByAccuracy(word, accuracy) {
-	//		background: -webkit-linear-gradient(top, #4d90fe, #4787ed);
-	elementId = getVocabularyElementId(word)
+function createVocabularyElement(word, accuracy) {
+	let saturation = 0.3 + accuracy * 0.7
+	let brightness = 1 + accuracy * 0.2
 	return `
-		<style>
-			#${elementId} {
-				border: 1px solid rgba(48, 121, 237, ${accuracy});
-			}
-		</style>
+		<input
+			type="submit"
+			class="action"
+			value="${word}"
+			onclick="replaceSelection('${word}')"
+			style="filter: saturate(${saturation}) brightness(${brightness});"
+		/>
 	`
-}
-
-function getVocabularyElementId(word) {
-	return getElementId("vocabulary", word)
-}
-
-function getElementId(type, name) {
-	return `${type}-${name}`
 }

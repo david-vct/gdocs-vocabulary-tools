@@ -28,21 +28,12 @@
 		</style>
 	</head>
 	<body>
-		<? var words = data.words; ?>
 		<p><?= data.message ?></p>
 
 		<main>
 			<div class="vocabulary">
-				<? for (var i = 0; i < words.length; i++) { ?>
-				<input
-					type="submit"
-					class="action"
-					value="<?= words[i] ?>"
-					onclick="replaceSelection('<?= words[i] ?>')"
-					style="
-						filter: saturate(<?= 0.3 + data.accuracies[i] * 0.7 ?>) brightness(<?= 1 + data.accuracies[i] * 0.2 ?>);
-					"
-				/>
+				<? for (var i = 0; i < data.words.length; i++) { ?>
+				<?!= createVocabularyElement(data.words[i], data.accuracies[i]) ?>
 				<? } ?>
 			</div>
 		</main>
