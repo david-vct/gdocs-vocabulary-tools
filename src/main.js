@@ -18,6 +18,11 @@ function onOpen() {
 function showSynonymsInterface() {
 	let expression = getSelectedText()
 	let data = getSynonymsFromCnrtl(expression)
+
+	if (data.error) {
+		return ui.alert(data.error)
+	}
+
 	showSidebar(`Synonymes de ${expression}`, data, "views/vocabulary")
 }
 
@@ -25,6 +30,11 @@ function showSynonymsInterface() {
 function showAntonymsInterface() {
 	let expression = getSelectedText()
 	let data = getAntonymsFromCnrtl(expression)
+
+	if (data.error) {
+		return ui.alert(data.error)
+	}
+
 	showSidebar(`Antonymes de ${expression}`, data, "views/vocabulary")
 }
 

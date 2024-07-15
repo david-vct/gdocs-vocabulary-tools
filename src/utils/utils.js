@@ -10,16 +10,7 @@ function getHtml(url) {
 		muteHttpExceptions: true,
 	}
 
-	response = UrlFetchApp.fetch(url, options)
-
-	switch (response.getResponseCode()) {
-		case 200:
-			return response
-		case 404:
-			throw new Error(`Page not found`)
-		default:
-			throw new Error(`Fetch failed with response code ${response.getResponseCode()}`)
-	}
+	return UrlFetchApp.fetch(url, options)
 }
 
 /**
