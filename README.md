@@ -4,12 +4,12 @@ Google Docs Vocabulary Tools is a versatile **Google Docs add-on** designed to e
 
 ## Overview
 
-![Image](/assets/img/vocabulary-tools-uses-flat.jpg)
-
 - **Synonyms Finder**: Instantly find synonyms to avoid repetition and add variety to your writing
 - **Antonyms Finder**: Discover antonyms to precisely express contrasting ideas
 - **Conjugation Assistant**: Easily get the correct verb conjugations in different tenses
 - **Language**: French
+
+![Image](/assets/img/vocabulary-tools-uses-flat.jpg)
 
 ## Usage
 
