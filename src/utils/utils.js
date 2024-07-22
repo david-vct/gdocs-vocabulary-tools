@@ -13,6 +13,16 @@ function getHtml(url) {
 	return UrlFetchApp.fetch(url, options)
 }
 
+function insertVocabulary(word) {
+	// Add the space at the end of the word if needed
+	let selectedText = getSelectedText()
+	if (selectedText.charAt(selectedText.length - 1) === " ") {
+		word += " "
+	}
+
+	insertText(word)
+}
+
 /**
  * Gets @string with the first letter capitalized
  * @param {string} string

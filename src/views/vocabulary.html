@@ -42,7 +42,7 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script>
 			function replaceSelection(word) {
-				google.script.run.withSuccessHandler(closeIt).insertText(word)
+				google.script.run.withSuccessHandler(closeIt).insertVocabulary(word)
 			}
 			function closeIt() {
 				google.script.host.close()
