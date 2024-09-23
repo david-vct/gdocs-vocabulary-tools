@@ -23,6 +23,7 @@ function getAntonyms(expression) {
  * @param {string} url
  * @param {string} expression
  * @returns {object} {message, words: list of vocabulary}
+ * @deprecated
  */
 function getVocabulary(url, expression) {
 	let html = getHtml(url + expression.toLowerCase())
@@ -33,6 +34,7 @@ function getVocabulary(url, expression) {
  * Get the list of synonyms or antonyms in @html
  * @param {string} html
  * @returns {object} {message, words: list of vocabulary}
+ * @deprecated
  */
 function searchVocabulary(html) {
 	// Get the main container of the vocabulary
